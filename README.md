@@ -1,0 +1,2 @@
+# astro-microcms-tutorial
+AstroとmicroCMSを連携してCMSを構築する練習をするためのレポジトリです。
