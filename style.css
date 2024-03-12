@@ -1,0 +1,445 @@
+/* 初期化。ブラウザによってmarginなどの初期設定の大きさがバラバラなので、
+一旦リセットしておきます。 */
+html {
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+    font-family: "Noto Sans", serif;
+}
+
+
+body * {
+    font-family: "Noto Sans JP", sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-size: 1.6rem;
+    margin: 0;
+    color: #21243D;
+}
+
+
+body {
+    margin: 0;
+}
+
+
+p {
+    margin: 0;
+}
+
+
+img {
+    width: 100%;
+}
+
+/* 汎用的に使える部品として使うクラスのCSSを定義。 */
+
+/* フレックスボックスを作るための定義。
+大体justify-contentとalign-itemsもcenterにしがちなので先に定義しておく */
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 非表示にするためのCSS。
+透明マントみたいな役割。
+非表示にするためのCSSなのに「表示する」というクラス名にしているのが
+我ながら紛らわしいので、
+共同開発するときは"display-none"とかの方が良いと思われる */
+.display {
+    display: none;
+}
+
+/* ブロック要素のテキストを真ん中にするためのクラス */
+.txt-center {
+    text-align: center;
+}
+
+
+/* ここからはそれぞれのセクションに適用するCSSを書いていく。
+モバイルファーストで書きたいので、前半はスマホ用の幅で書ている。
+PCとスマホのどちらからCSSを書くかはサイトの目的やチームによって異なるのでその都度決定しましょう。
+また、どの場所のCSSかわかりやすいようにCSSのシートにはコメントを残すと良いと思います。
+特にPC版はスマホ版に適用されたCSSを部分的に修正するだけなので、
+そのCSSがどのセクションのCSSなのか迷子になりがちです。
+ */
+
+/* header */
+
+header {
+    text-align: right;
+    height: 50px;
+}
+
+/* スマホ用のCSSなのでpc-menuは非表示にしておく */
+header .pc-menu {
+    display: none;
+}
+
+header .sp-menu {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    top: 50px;
+    right: 0px;
+    transition: all .4s; /*アニメーションの設定。メニューのアイコンのCSSの書き方をググったときに出てきたやり方を適用。*/
+}
+.sp-menu li {
+    padding-bottom: 15px;
+}
+
+.button-wrapper {
+    position: absolute;
+    right: 10px;
+}
+
+/* メニューのアイコンのCSSの書き方を検索して、コピペした部分。 */
+.openbtn1{
+    position: relative; /*ボタン内側の基点となるためrelativeを指定*/
+    background:#FFF;
+    cursor: pointer;
+      width: 50px;
+      height:50px;
+    border-radius: 5px;
+  }
+
+/*ボタン内側*/
+.openbtn1 span{
+    display: inline-block;
+    transition: all .4s;/*アニメーションの設定*/
+    position: absolute;
+    left: 14px;
+    height: 1.5px;
+    border-radius: 2px;
+    background: #21243D;
+    width: 45%;
+}
+
+.openbtn1 span:nth-of-type(1) {
+top:15px; 
+}
+
+.openbtn1 span:nth-of-type(2) {
+top:23px;
+}
+
+.openbtn1 span:nth-of-type(3) {
+top:31px;
+}
+
+/*activeクラスが付与されると線が回転して×に*/
+
+.openbtn1.active span:nth-of-type(1) {
+    top: 18px;
+    left: 18px;
+    transform: translateY(6px) rotate(-45deg);
+    width: 30%;
+}
+
+.openbtn1.active span:nth-of-type(2) {
+opacity: 0;/*真ん中の線は透過*/
+}
+
+.openbtn1.active span:nth-of-type(3){
+    top: 30px;
+    left: 18px;
+    transform: translateY(-6px) rotate(45deg);
+    width: 30%;
+}
+
+/* ↑ここまでがググってコピペした部分 */
+
+ul {
+    list-style: none;
+    align-items: end;
+}
+header li {
+    padding-right: 33px;
+}
+
+
+/* profile */
+
+.profile {
+    padding: 0 24px;
+}
+
+/* .profile-img img のセレクタでwidthを指定するので
+.profile-img ではwidthを指定する必要がない。 */
+.profile-img {
+    width: fit-content;
+    margin: auto;
+    margin-top: 33px;
+    margin-bottom: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -5px 13px #EDF7FA;
+    border-radius: 50%;
+}
+
+.profile-img img {
+    width: 180px;
+    height: auto;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 21px;
+}
+
+.profile-txt {
+    text-align: center;
+}
+
+.profile-txt p {
+    margin-bottom: 27px;
+}
+
+.download-button {
+    border: none;
+    border-radius: 2px;
+    background:#FF6464;
+    color: #FFF;
+    font-size: 20px;
+    width: 208px;
+    height: 47px;
+    margin-bottom: 58px;
+
+}
+
+/* recent-posts */
+.recent-posts {
+    background-color: #EDF7FA;
+    padding: 0 11px 38px;
+}
+
+h2 {
+    /* ここでは、フレックスボックを横並びにするためではなく、中央揃えにするために使用している */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+    height: 60px;
+}
+
+.recent-post-title {
+    background-color: #EDF7FA;
+}
+
+/* スマホバージョンの時はview-allが非表示なので非表示にする */
+.view-all {
+    display: none;
+}
+
+.recent-post {
+    width: 95%;
+    margin: 0 auto;
+    background-color: #FFF;
+    border-radius: 4px;
+    margin-bottom: 17px;
+    padding: 12px 20px 20px 20px;
+    box-shadow: 0 4 10 0 #BBE1FA ;
+}
+
+h3 {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+/* paramsはパラメータ（単：parameter, 複:parameters）の略。
+パラメータは、引数、設定値などの意味を持つ。日付やカテゴリー名を総称した。
+似た言葉でプロパティ（単：proterty, 複：properties, propsと略すこともある）という単語もあるので、
+recent-post-propsとしてもよいと思う。 */
+.recent-post-params {
+    margin-bottom: 19px;
+}
+
+.recent-post-date {
+    font-size: 16px;
+    font-weight: 400;
+    border-right: 1px solid #000;
+    padding-right: 24px;
+    width: 113px;
+}
+
+.recent-post-category {
+    padding-left: 24px;
+    font-size: 16px;
+}
+
+/* featured works */
+.featured-works {
+    padding: 0px 18px;
+    margin-bottom: 150px;
+}
+.work {
+    border-bottom: 1px solid #E0E0E0;
+    padding-bottom: 17px;
+    margin-bottom: 17px;
+}
+
+.work-title {
+    margin: 17px 0px;
+}
+
+.work-params {
+    margin-bottom: 24px
+}
+
+.work-year {
+    background: #142850;
+    color: #FFF;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: 900;
+    padding: 4.5px 12px;
+    margin-right: 22px;
+    margin-bottom: 24px;
+}
+
+.work-category {
+    color: #8695A4;
+    height: 25px;
+    margin-bottom: 24px;
+}
+
+footer {
+    height: 182px;
+}
+
+.social-icons {
+    width: 242px;
+    justify-content: space-between;
+    margin: 0 auto 26px;
+}
+
+.social-icons img {
+    width: 30px;
+    height: auto; /*autoでいいかはちゃんと確認していない。画像のサイズが合っていればautoで良いと思うが、画像が規定のサイズではない場合は指定する必要があると思う*/
+}
+
+
+
+/* PC版のCSSを書く */
+@media screen and (min-width: 600px) {
+
+    header, section, footer {
+        max-width: 856px;
+        margin: 0 auto;
+    }
+
+    header {
+        padding-top: 27px;
+        margin-bottom: 140px;
+    }
+
+
+    header .pc-menu {
+        padding-inline-start: 0px;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+    }
+
+    header .sp-menu {
+        display: none;
+    }
+
+    .openbtn1 {
+        display: none;
+    }
+
+    /* profile */
+
+    .profile {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: flex-start;
+        padding-bottom: 88px;
+    }
+
+    .profile-img {
+        margin: 0px;
+
+    }
+
+    .profile-img img {
+        width: 243px;
+    }
+
+    .profile-txt {
+        text-align: left;
+        max-width: 500px;
+        margin-right: 10%; 
+        /*margin-rightが10%であるというは私の解釈。
+        figmaでは115pxとなっているが、私が実際にこのサイトを見るとき、
+        相対指定（%）の方がどんな画面幅の時でも美しいと思ったから。
+        これは共同開発者やデザイナーと相談して決めるべき。
+        10%の理由は、figmaのキャンバスが1152pxで、この部分の隙間が115pxだったから。
+        この点からも、この隙間を115pxで絶対指定するよりも10%で相対指定する方が
+        デザイナーの意向を反映していると解釈した。
+        */
+    }
+
+    /* recent posts */
+    .recent-posts {
+        max-width: 100%;
+    }
+
+    .recent-posts-wrapper {
+        max-width: 856px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+    .recent-post {
+        height: 295px;
+        width: 49%;
+        margin: 0px;
+
+    }
+
+    .recent-posts-titles {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 856px;
+        margin: 0 auto;
+
+    }
+
+    h2{
+        justify-content: left;
+        font-size: 22px;
+        font-weight: 400;
+        height: 60px;
+    }
+
+    .view-all {
+        display: inline;
+        color: #00A8CC;
+    }
+
+    /* featured works */
+    .work {
+        display: flex;
+    }
+
+    .work img {
+        width: 246px;
+        height: auto;
+        margin-right: 18px;
+    }
+
+    .work h3 {
+        margin: 0px 0px 16px;
+    }
+}
