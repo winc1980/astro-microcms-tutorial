@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { fetchHomeData } from '../library/microcms'
+
+(async()=>{
+  const data = await fetchHomeData();
+  console.log(data);
+})();
 ---
 
 <Layout>
