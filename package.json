@@ -1,5 +1,15 @@
 {
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
   "dependencies": {
-    "astro": "^4.5.2"
+    "astro": "^4.5.2",
+    "microcms-js-sdk": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30"
   }
 }
